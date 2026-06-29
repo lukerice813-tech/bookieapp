@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="BookieApp"/>
+<meta name="theme-color" content="#18181b"/>
+<link rel="manifest" href="manifest.json"/>
+<link rel="apple-touch-icon" href="icon-192.png"/>
+<title>BookieApp</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#09090b;--surface:#18181b;--card:#27272a;--border:#3f3f46;
+  --text:#fafafa;--muted:#a1a1aa;--dim:#71717a;
+  --green:#22c55e;--green-bg:#14532d;--green-dim:#166534;
+  --red:#ef4444;--red-bg:#450a0a;--red-dim:#7f1d1d;
+  --amber:#f59e0b;--amber-bg:#451a03;
+  --blue:#3b82f6;--blue-bg:#1e3a5f;
+  --radius:12px;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden}
+button{font-family:var(--font);cursor:pointer;border:none;outline:none}
+input,select,textarea{font-family:var(--font);outline:none}
+
+/* ── Nav ── */
+#nav{display:flex;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.nav-tab{flex:1;padding:14px 8px 12px;text-align:center;font-size:12px;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px}
+.nav-tab.active{color:var(--green);border-bottom-color:var(--green)}
+.nav-tab svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8}
+
+/* ── Screens ── */
+.screen{display:none;padding:16px;max-width:480px;margin:0 auto}
+.screen.active{display:block}
+
+/* ── Header ── */
+.page-title{font-size:22px;font-weight:700;letter-spacing:-0.5px;margin-bottom:4px}
+.page-sub{font-size:13px;color:var(--muted);margin-bottom:20px}
+
+/* ── Cards ── */
+.card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:16px;margin-bottom:12px}
+.card-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+
+/* ── Stats row ── */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.stat{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:14px}
+.stat-val{font-size:22px;font-weight:700;margin-bottom:2px}
+.stat-label{font-size:11px;color:var(--muted)}
+.green{color:var(--green)}.red{color:var(--red)}.amber{color:var(--amber)}.blue{color:var(--blue)}
+
+/* ── Form elements ── */
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:500}
+.field input,.field select,.field textarea{
+  width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;
+  padding:11px 13px;color:var(--text);font-size:15px;transition:border .15s
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green)}
+.field select option{background:var(--surface)}
+.field textarea{resize:none;height:72px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* ── Buttons ── */
+.btn{width:100%;padding:14px;border-radius:10px;font-size:15px;font-weight:600;transition:opacity .15s}
+.btn:active{opacity:.75}
+.btn-green{background:var(--green);color:#000}
+.btn-red{background:var(--red);color:#fff}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-sm{padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;width:auto}
+
+/* ── Bet cards ── */
+.bet-card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:14px;margin-bottom:10px}
+.bet-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.bet-event{font-size:14px;font-weight:600;line-height:1.3}
+.bet-meta{font-size:12px;color:var(--muted);margin-top:3px}
+.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600}
+.badge-open{background:var(--blue-bg);color:var(--blue)}
+.badge-won{background:var(--green-bg);color:var(--green)}
+.badge-lost{background:var(--red-bg);color:var(--red)}
+.badge-settled{background:#27272a;color:var(--muted)}
+.bet-odds{font-size:20px;font-weight:700}
+.bet-detail{display:flex;justify-content:space-between;font-size:13px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.bet-actions{display:flex;gap:8px;margin-top:10px}
+.bet-actions button{flex:1;padding:9px;border-radius:8px;font-size:13px;font-weight:600;border:none}
+.btn-win{background:var(--green-bg);color:var(--green)}
+.btn-lose{background:var(--red-bg);color:var(--red)}
+.btn-void{background:#27272a;color:var(--muted)}
+
+/* ── Bettor login / name ── */
+#name-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70dvh;padding:32px;text-align:center}
+#name-screen h1{font-size:28px;font-weight:800;margin-bottom:8px}
+#name-screen p{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6}
+#name-screen input{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;color:var(--text);font-size:17px;text-align:center;margin-bottom:14px}
+#name-screen input:focus{border-color:var(--green)}
+
+/* ── Odds display ── */
+.odds-pill{display:inline-block;background:var(--amber-bg);color:var(--amber);border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700}
+
+/* ── Empty state ── */
+.empty{text-align:center;padding:48px 16px;color:var(--muted)}
+.empty svg{width:40px;height:40px;stroke:var(--dim);fill:none;stroke-width:1.5;margin:0 auto 12px;display:block}
+.empty p{font-size:14px}
+
+/* ── Modal overlay ── */
+.modal-wrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;align-items:flex-end;justify-content:center}
+.modal-wrap.open{display:flex}
+.modal{background:var(--surface);border-radius:20px 20px 0 0;padding:24px 20px 36px;width:100%;max-width:480px;border-top:1px solid var(--border)}
+.modal h3{font-size:18px;font-weight:700;margin-bottom:18px}
+.modal-close{float:right;background:var(--card);border:none;color:var(--muted);width:28px;height:28px;border-radius:50%;font-size:16px;line-height:28px;text-align:center;margin-top:-2px}
+
+/* ── Toast ── */
+#toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:10px 20px;border-radius:30px;font-size:13px;font-weight:600;opacity:0;transition:opacity .2s;z-index:300;white-space:nowrap}
+#toast.show{opacity:1}
+
+/* ── Divider ── */
+.divider{height:1px;background:var(--border);margin:16px 0}
+
+/* ── Balance chip ── */
+.balance-chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:600;margin-bottom:16px}
+</style>
+</head>
+<body>
+
+<!-- BOOKIE PIN GATE -->
+<div id="pin-gate" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;text-align:center">
+  <div style="font-size:36px;margin-bottom:8px">🎰</div>
+  <h2 style="font-size:22px;font-weight:800;margin-bottom:6px">Bookie login</h2>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:24px">Enter your bookie PIN to manage events and settle bets</p>
+  <input id="pin-input" type="password" inputmode="numeric" maxlength="6" placeholder="Enter PIN" style="width:100%;max-width:280px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;color:var(--text);font-size:20px;text-align:center;letter-spacing:6px;margin-bottom:14px"/>
+  <button class="btn btn-green" style="max-width:280px" onclick="checkPin()">Unlock bookie view</button>
+  <button onclick="hidePinGate()" style="margin-top:12px;background:none;border:none;color:var(--muted);font-size:14px">Cancel</button>
+  <p id="pin-err" style="color:var(--red);font-size:13px;margin-top:10px;display:none">Wrong PIN. Try again.</p>
+</div>
+
+<!-- BETTOR NAME GATE -->
+<div id="name-screen" style="display:none">
+  <div style="font-size:48px;margin-bottom:12px">🎲</div>
+  <h1>BookieApp</h1>
+  <p>Enter your name so the bookie knows who placed the bet.</p>
+  <input id="bettor-name-input" type="text" placeholder="Your name" maxlength="24"/>
+  <button class="btn btn-green" onclick="saveBettorName()">Get started</button>
+</div>
+
+<!-- MAIN APP -->
+<div id="main-app" style="display:none">
+
+  <!-- Nav -->
+  <div id="nav">
+    <button class="nav-tab active" onclick="showScreen('events')" id="tab-events">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Events
+    </button>
+    <button class="nav-tab" onclick="showScreen('mybets')" id="tab-mybets">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      My bets
+    </button>
+    <button class="nav-tab" onclick="showScreen('leaderboard')" id="tab-leaderboard">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Standings
+    </button>
+    <button class="nav-tab" id="tab-bookie" onclick="requestBookie()">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Bookie
+    </button>
+  </div>
+
+  <!-- EVENTS screen (bettor) -->
+  <div id="screen-events" class="screen active">
+    <div class="page-title">Open events</div>
+    <div class="page-sub" id="bettor-greeting">Place your bets</div>
+    <div id="events-list"></div>
+  </div>
+
+  <!-- MY BETS screen -->
+  <div id="screen-mybets" class="screen">
+    <div class="page-title">My bets</div>
+    <div class="stats">
+      <div class="stat"><div class="stat-val green" id="mb-won">£0</div><div class="stat-label">Total won</div></div>
+      <div class="stat"><div class="stat-val red" id="mb-lost">£0</div><div class="stat-label">Total lost</div></div>
+    </div>
+    <div id="mybets-list"></div>
+  </div>
+
+  <!-- LEADERBOARD screen -->
+  <div id="screen-leaderboard" class="screen">
+    <div class="page-title">Standings</div>
+    <div class="page-sub">Net profit / loss across all settled bets</div>
+    <div id="leaderboard-list"></div>
+  </div>
+
+  <!-- BOOKIE screen -->
+  <div id="screen-bookie" class="screen">
+    <div class="page-title">Bookie panel</div>
+    <div class="stats">
+      <div class="stat"><div class="stat-val green" id="bk-profit">£0</div><div class="stat-label">House profit</div></div>
+      <div class="stat"><div class="stat-val" id="bk-bets">0</div><div class="stat-label">Total bets</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Create new event</div>
+      <div class="field"><label>Event title</label><input id="ev-title" type="text" placeholder="Man Utd vs Arsenal — Match result"/></div>
+      <div class="row2">
+        <div class="field"><label>Category</label>
+          <select id="ev-cat">
+            <option value="Sport">Sport</option>
+            <option value="Custom">Custom</option>
+            <option value="Politics">Politics</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field"><label>Closes</label><input id="ev-closes" type="datetime-local"/></div>
+      </div>
+      <div class="card-label" style="margin-top:4px;margin-bottom:10px">Outcomes and odds</div>
+      <div id="outcomes-builder"></div>
+      <button onclick="addOutcome()" class="btn btn-outline" style="margin-bottom:14px;font-size:13px">+ Add outcome</button>
+      <button class="btn btn-green" onclick="createEvent()">Publish event</button>
+    </div>
+
+    <div class="divider"></div>
+    <div style="font-size:15px;font-weight:600;margin-bottom:12px">All events</div>
+    <div id="bookie-events-list"></div>
+
+    <div class="divider"></div>
+    <div style="font-size:15px;font-weight:600;margin-bottom:12px">Bookie settings</div>
+    <div class="card">
+      <div class="field"><label>Change PIN</label><input id="new-pin" type="password" inputmode="numeric" maxlength="6" placeholder="New PIN (4–6 digits)"/></div>
+      <button class="btn btn-outline" onclick="changePin()" style="font-size:13px">Update PIN</button>
+    </div>
+  </div>
+
+</div><!-- /main-app -->
+
+<!-- BET PLACEMENT MODAL -->
+<div class="modal-wrap" id="bet-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeBetModal()">✕</button>
+    <h3 id="bm-title">Place a bet</h3>
+    <div class="field"><label>Select outcome</label><select id="bm-outcome"></select></div>
+    <div class="field"><label>Stake (£)</label><input id="bm-stake" type="number" min="0.5" step="0.5" placeholder="5"/></div>
+    <div class="card" style="margin-bottom:16px;padding:12px">
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px">
+        <span style="color:var(--muted)">Odds</span><span id="bm-odds-display" class="odds-pill">—</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:13px">
+        <span style="color:var(--muted)">Potential return</span><span id="bm-return" style="font-weight:700;color:var(--green)">£0.00</span>
+      </div>
+    </div>
+    <button class="btn btn-green" onclick="placeBet()">Confirm bet</button>
+  </div>
+</div>
+
+<!-- SETTLE EVENT MODAL -->
+<div class="modal-wrap" id="settle-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeSettleModal()">✕</button>
+    <h3>Settle event</h3>
+    <p id="settle-event-name" style="font-size:14px;color:var(--muted);margin-bottom:16px"></p>
+    <div class="field"><label>Winning outcome</label><select id="settle-outcome"></select></div>
+    <div style="background:var(--amber-bg);border-radius:8px;padding:12px;font-size:13px;color:var(--amber);margin-bottom:16px">
+      All bets on the winning outcome will be marked Won. All others Lost. This cannot be undone.
+    </div>
+    <button class="btn btn-green" onclick="settleEvent()">Settle and pay out</button>
+  </div>
+</div>
+
+<div id="toast">Bet placed!</div>
+
+<script>
+const STORAGE_KEY = 'bookieapp_v2';
+const DEFAULT_PIN = '1234';
+
+let state = load();
+let currentUser = localStorage.getItem('bookieapp_user') || null;
+let bookieUnlocked = false;
+let activeEventId = null;
+let activeSettleId = null;
+let outcomeCount = 2;
+
+function load() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultState(); }
+  catch { return defaultState(); }
+}
+function defaultState() {
+  return { pin: DEFAULT_PIN, events: [], bets: [] };
+}
+function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+function uid() { return Math.random().toString(36).slice(2,9); }
+
+function fmt(n) { return '£' + Math.abs(n).toFixed(2); }
+
+function toast(msg, col) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = col || 'var(--green)';
+  t.style.color = col ? '#fff' : '#000';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ── Boot ──────────────────────────────────────────────────────────
+window.onload = function() {
+  if (!currentUser) {
+    document.getElementById('name-screen').style.display = 'flex';
+  } else {
+    document.getElementById('main-app').style.display = 'block';
+    document.getElementById('bettor-greeting').textContent = 'Hello, ' + currentUser + ' — pick an event and place your bet';
+    renderAll();
+  }
+};
+
+function saveBettorName() {
+  const n = document.getElementById('bettor-name-input').value.trim();
+  if (!n) { alert('Enter your name first.'); return; }
+  currentUser = n;
+  localStorage.setItem('bookieapp_user', n);
+  document.getElementById('name-screen').style.display = 'none';
+  document.getElementById('main-app').style.display = 'block';
+  document.getElementById('bettor-greeting').textContent = 'Hello, ' + n + ' — pick an event and place your bet';
+  renderAll();
+}
+
+// ── Nav ───────────────────────────────────────────────────────────
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+  if (id === 'mybets') renderMyBets();
+  if (id === 'leaderboard') renderLeaderboard();
+  if (id === 'bookie') renderBookiePanel();
+}
+
+function requestBookie() {
+  if (bookieUnlocked) { showScreen('bookie'); return; }
+  document.getElementById('pin-gate').style.display = 'flex';
+  document.getElementById('pin-input').value = '';
+  document.getElementById('pin-err').style.display = 'none';
+}
+function hidePinGate() { document.getElementById('pin-gate').style.display = 'none'; }
+function checkPin() {
+  const p = document.getElementById('pin-input').value;
+  if (p === state.pin) {
+    bookieUnlocked = true;
+    hidePinGate();
+    showScreen('bookie');
+  } else {
+    document.getElementById('pin-err').style.display = 'block';
+  }
+}
+function changePin() {
+  const p = document.getElementById('new-pin').value.trim();
+  if (p.length < 4) { alert('PIN must be 4–6 digits.'); return; }
+  state.pin = p;
+  save();
+  toast('PIN updated');
+  document.getElementById('new-pin').value = '';
+}
+
+// ── Outcome builder ───────────────────────────────────────────────
+function initOutcomes() {
+  document.getElementById('outcomes-builder').innerHTML = '';
+  outcomeCount = 0;
+  addOutcome('Home win', '2.00');
+  addOutcome('Away win', '3.50');
+}
+function addOutcome(label='', odds='') {
+  outcomeCount++;
+  const id = 'oc_' + outcomeCount;
+  const div = document.createElement('div');
+  div.id = id;
+  div.style.cssText = 'display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;margin-bottom:8px';
+  div.innerHTML = `
+    <input type="text" placeholder="Outcome name" value="${label}" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 11px;color:var(--text);font-size:14px"/>
+    <input type="text" placeholder="Odds" value="${odds}" style="width:72px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 11px;color:var(--text);font-size:14px;text-align:center"/>
+    <button onclick="document.getElementById('${id}').remove()" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 10px;color:var(--muted);font-size:16px">✕</button>
+  `;
+  document.getElementById('outcomes-builder').appendChild(div);
+}
+
+// ── Create event ──────────────────────────────────────────────────
+function createEvent() {
+  const title = document.getElementById('ev-title').value.trim();
+  const cat = document.getElementById('ev-cat').value;
+  const closes = document.getElementById('ev-closes').value;
+  if (!title) { alert('Add an event title.'); return; }
+  const rows = document.querySelectorAll('#outcomes-builder > div');
+  const outcomes = [];
+  rows.forEach(r => {
+    const inputs = r.querySelectorAll('input');
+    const name = inputs[0].value.trim();
+    const odds = parseFloat(inputs[1].value);
+    if (name && odds > 0) outcomes.push({ id: uid(), name, odds });
+  });
+  if (outcomes.length < 2) { alert('Add at least 2 outcomes with odds.'); return; }
+  state.events.push({ id: uid(), title, cat, closes, outcomes, status: 'open', winner: null, createdAt: Date.now() });
+  save();
+  document.getElementById('ev-title').value = '';
+  document.getElementById('ev-closes').value = '';
+  initOutcomes();
+  toast('Event published!');
+  renderAll();
+}
+
+// ── Render all ────────────────────────────────────────────────────
+function renderAll() {
+  renderEvents();
+  renderBookiePanel();
+}
+
+// ── Events list (bettor) ──────────────────────────────────────────
+function renderEvents() {
+  const el = document.getElementById('events-list');
+  const open = state.events.filter(e => e.status === 'open');
+  if (!open.length) {
+    el.innerHTML = `<div class="empty"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p>No open events right now.<br>Check back soon.</p></div>`;
+    return;
+  }
+  el.innerHTML = open.map(ev => {
+    const myBets = state.bets.filter(b => b.eventId === ev.id && b.bettor === currentUser);
+    const myStake = myBets.reduce((s,b) => s + b.stake, 0);
+    return `<div class="bet-card">
+      <div class="bet-header">
+        <div>
+          <div class="bet-event">${ev.title}</div>
+          <div class="bet-meta">${ev.cat}${ev.closes ? ' · Closes ' + fmtDate(ev.closes) : ''}</div>
+          ${myBets.length ? `<div class="bet-meta" style="color:var(--amber);margin-top:2px">Your stake: ${fmt(myStake)}</div>` : ''}
+        </div>
+        <span class="badge badge-open">Open</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+        ${ev.outcomes.map(o => `<span style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:13px"><span style="color:var(--muted)">${o.name}</span> <span class="odds-pill">${o.odds}x</span></span>`).join('')}
+      </div>
+      <button class="btn btn-green" onclick="openBetModal('${ev.id}')">Place bet</button>
+    </div>`;
+  }).join('');
+}
+
+// ── Bet modal ─────────────────────────────────────────────────────
+function openBetModal(eventId) {
+  activeEventId = eventId;
+  const ev = state.events.find(e => e.id === eventId);
+  document.getElementById('bm-title').textContent = ev.title;
+  const sel = document.getElementById('bm-outcome');
+  sel.innerHTML = ev.outcomes.map(o => `<option value="${o.id}" data-odds="${o.odds}">${o.name} — ${o.odds}x</option>`).join('');
+  document.getElementById('bm-stake').value = '';
+  updateReturn();
+  sel.onchange = updateReturn;
+  document.getElementById('bm-stake').oninput = updateReturn;
+  document.getElementById('bet-modal').classList.add('open');
+}
+function closeBetModal() { document.getElementById('bet-modal').classList.remove('open'); }
+function updateReturn() {
+  const sel = document.getElementById('bm-outcome');
+  const odds = parseFloat(sel.selectedOptions[0]?.dataset.odds || 0);
+  const stake = parseFloat(document.getElementById('bm-stake').value) || 0;
+  document.getElementById('bm-odds-display').textContent = odds + 'x';
+  document.getElementById('bm-return').textContent = '£' + (stake * odds).toFixed(2);
+}
+function placeBet() {
+  const ev = state.events.find(e => e.id === activeEventId);
+  const sel = document.getElementById('bm-outcome');
+  const outcomeId = sel.value;
+  const outcome = ev.outcomes.find(o => o.id === outcomeId);
+  const stake = parseFloat(document.getElementById('bm-stake').value);
+  if (!stake || stake < 0.5) { alert('Minimum stake is £0.50'); return; }
+  state.bets.push({
+    id: uid(), eventId: ev.id, eventTitle: ev.title,
+    outcomeId, outcomeName: outcome.name, odds: outcome.odds,
+    stake, bettor: currentUser, status: 'open', placedAt: Date.now()
+  });
+  save();
+  closeBetModal();
+  toast('Bet placed! Good luck 🤞');
+  renderAll();
+}
+
+// ── My bets ───────────────────────────────────────────────────────
+function renderMyBets() {
+  const myBets = state.bets.filter(b => b.bettor === currentUser).sort((a,b) => b.placedAt - a.placedAt);
+  const won = myBets.filter(b => b.status === 'won').reduce((s,b) => s + b.stake * b.odds - b.stake, 0);
+  const lost = myBets.filter(b => b.status === 'lost').reduce((s,b) => s + b.stake, 0);
+  document.getElementById('mb-won').textContent = fmt(won);
+  document.getElementById('mb-lost').textContent = fmt(lost);
+  const el = document.getElementById('mybets-list');
+  if (!myBets.length) {
+    el.innerHTML = `<div class="empty"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p>No bets yet. Head to Events to place your first.</p></div>`;
+    return;
+  }
+  el.innerHTML = myBets.map(b => {
+    const badge = {open:'badge-open',won:'badge-won',lost:'badge-lost',void:'badge-settled'}[b.status];
+    const ret = b.status === 'won' ? '+' + fmt(b.stake * b.odds - b.stake) : b.status === 'lost' ? '-' + fmt(b.stake) : '';
+    return `<div class="bet-card">
+      <div class="bet-header">
+        <div><div class="bet-event">${b.eventTitle}</div><div class="bet-meta">${b.outcomeName}</div></div>
+        <span class="badge ${badge}">${b.status}</span>
+      </div>
+      <div class="bet-detail">
+        <span style="color:var(--muted)">Stake: <strong style="color:var(--text)">${fmt(b.stake)}</strong></span>
+        <span style="color:var(--muted)">Odds: <strong style="color:var(--amber)">${b.odds}x</strong></span>
+        ${ret ? `<span style="font-weight:700;color:${b.status==='won'?'var(--green)':'var(--red)'}">${ret}</span>` : `<span style="color:var(--muted)">Potential: <strong style="color:var(--green)">+${fmt(b.stake*b.odds-b.stake)}</strong></span>`}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── Leaderboard ───────────────────────────────────────────────────
+function renderLeaderboard() {
+  const settled = state.bets.filter(b => b.status !== 'open');
+  const players = {};
+  settled.forEach(b => {
+    if (!players[b.bettor]) players[b.bettor] = 0;
+    players[b.bettor] += b.status === 'won' ? b.stake * b.odds - b.stake : -b.stake;
+  });
+  const sorted = Object.entries(players).sort((a,b) => b[1]-a[1]);
+  const el = document.getElementById('leaderboard-list');
+  if (!sorted.length) {
+    el.innerHTML = `<div class="empty"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><p>No settled bets yet.</p></div>`;
+    return;
+  }
+  const medals = ['🥇','🥈','🥉'];
+  el.innerHTML = sorted.map(([name, net], i) => `
+    <div class="bet-card" style="display:flex;align-items:center;gap:12px;padding:14px">
+      <div style="font-size:20px;width:28px;text-align:center">${medals[i] || (i+1)}</div>
+      <div style="flex:1">
+        <div style="font-weight:600;font-size:15px">${name}</div>
+        <div style="font-size:12px;color:var(--muted)">${state.bets.filter(b=>b.bettor===name&&b.status!=='open').length} settled bets</div>
+      </div>
+      <div style="font-size:18px;font-weight:700;color:${net>=0?'var(--green)':'var(--red)'}">${net>=0?'+':''}${fmt(net)}</div>
+    </div>
+  `).join('');
+}
+
+// ── Bookie panel ──────────────────────────────────────────────────
+function renderBookiePanel() {
+  if (!bookieUnlocked) return;
+  initOutcomes();
+
+  const settled = state.bets.filter(b => b.status !== 'open');
+  const housePnl = settled.reduce((s,b) => b.status==='won' ? s-(b.stake*b.odds-b.stake) : s+b.stake, 0);
+  document.getElementById('bk-profit').textContent = (housePnl >= 0 ? '' : '-') + fmt(housePnl);
+  document.getElementById('bk-profit').style.color = housePnl >= 0 ? 'var(--green)' : 'var(--red)';
+  document.getElementById('bk-bets').textContent = state.bets.length;
+
+  const el = document.getElementById('bookie-events-list');
+  if (!state.events.length) { el.innerHTML = `<div class="empty"><p>No events yet. Create one above.</p></div>`; return; }
+
+  el.innerHTML = [...state.events].reverse().map(ev => {
+    const evBets = state.bets.filter(b => b.eventId === ev.id);
+    const totalStake = evBets.reduce((s,b) => s+b.stake, 0);
+    const badge = ev.status === 'open' ? 'badge-open' : ev.status === 'settled' ? 'badge-settled' : 'badge-lost';
+    return `<div class="bet-card">
+      <div class="bet-header">
+        <div>
+          <div class="bet-event">${ev.title}</div>
+          <div class="bet-meta">${ev.cat}${ev.closes?' · '+fmtDate(ev.closes):''}</div>
+        </div>
+        <span class="badge ${badge}">${ev.status}</span>
+      </div>
+      <div style="display:flex;gap:16px;font-size:13px;margin-bottom:10px">
+        <span style="color:var(--muted)">Bets: <strong style="color:var(--text)">${evBets.length}</strong></span>
+        <span style="color:var(--muted)">Pool: <strong style="color:var(--amber)">${fmt(totalStake)}</strong></span>
+        ${ev.winner ? `<span style="color:var(--muted)">Winner: <strong style="color:var(--green)">${ev.outcomes.find(o=>o.id===ev.winner)?.name||'?'}</strong></span>` : ''}
+      </div>
+      ${ev.status==='open' ? `
+      <div class="bet-actions">
+        <button class="btn-win" onclick="openSettle('${ev.id}')">Settle event</button>
+        <button class="btn-void" onclick="voidEvent('${ev.id}')">Void all</button>
+      </div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+// ── Settle event ──────────────────────────────────────────────────
+function openSettle(eventId) {
+  activeSettleId = eventId;
+  const ev = state.events.find(e => e.id === eventId);
+  document.getElementById('settle-event-name').textContent = ev.title;
+  const sel = document.getElementById('settle-outcome');
+  sel.innerHTML = ev.outcomes.map(o => `<option value="${o.id}">${o.name} (${o.odds}x)</option>`).join('');
+  document.getElementById('settle-modal').classList.add('open');
+}
+function closeSettleModal() { document.getElementById('settle-modal').classList.remove('open'); }
+function settleEvent() {
+  const ev = state.events.find(e => e.id === activeSettleId);
+  const winnerId = document.getElementById('settle-outcome').value;
+  ev.status = 'settled';
+  ev.winner = winnerId;
+  state.bets.forEach(b => {
+    if (b.eventId === ev.id && b.status === 'open') {
+      b.status = b.outcomeId === winnerId ? 'won' : 'lost';
+    }
+  });
+  save();
+  closeSettleModal();
+  toast('Event settled!');
+  renderAll();
+  renderLeaderboard();
+}
+function voidEvent(eventId) {
+  if (!confirm('Void all bets on this event? All bets will be marked void.')) return;
+  const ev = state.events.find(e => e.id === eventId);
+  ev.status = 'voided';
+  state.bets.forEach(b => { if (b.eventId === eventId && b.status === 'open') b.status = 'void'; });
+  save();
+  toast('Event voided', 'var(--amber)');
+  renderAll();
+}
+
+// ── Helpers ───────────────────────────────────────────────────────
+function fmtDate(s) {
+  if (!s) return '';
+  const d = new Date(s);
+  return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+}
+
+// ── Close modals on overlay tap ───────────────────────────────────
+document.querySelectorAll('.modal-wrap').forEach(m => {
+  m.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
+});
+</script>
+</body>
+</html>
