@@ -2,7 +2,7 @@
   "name": "BookieApp",
   "short_name": "BookieApp",
   "description": "Private betting app for friends — set odds, place bets, track standings",
-  "start_url": "/index.html",
+  "start_url": "/bookieapp/index.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#09090b",
