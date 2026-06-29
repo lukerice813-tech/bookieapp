@@ -19,82 +19,99 @@
   --red:#ef4444;--red-bg:#450a0a;
   --amber:#f59e0b;--amber-bg:#451a03;
   --blue:#3b82f6;--blue-bg:#1e3a5f;
+  --purple:#a855f7;--purple-bg:#3b0764;
   --radius:12px;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 }
 body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100dvh;overflow-x:hidden}
 button{font-family:var(--font);cursor:pointer;border:none;outline:none}
 input,select,textarea{font-family:var(--font);outline:none}
 #nav{display:flex;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
-.nav-tab{flex:1;padding:14px 8px 12px;text-align:center;font-size:12px;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:4px}
+.nav-tab{flex:1;padding:12px 4px 10px;text-align:center;font-size:10px;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:3px}
 .nav-tab.active{color:var(--green);border-bottom-color:var(--green)}
-.nav-tab svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8}
-.screen{display:none;padding:16px;max-width:480px;margin:0 auto}
+.nav-tab svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8}
+.screen{display:none;padding:16px;max-width:480px;margin:0 auto;padding-bottom:24px}
 .screen.active{display:block}
 .page-title{font-size:22px;font-weight:700;letter-spacing:-0.5px;margin-bottom:4px}
 .page-sub{font-size:13px;color:var(--muted);margin-bottom:20px}
 .card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:16px;margin-bottom:12px}
-.card-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.card-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
 .stat{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:14px}
-.stat-val{font-size:22px;font-weight:700;margin-bottom:2px}
+.stat-val{font-size:20px;font-weight:700;margin-bottom:2px}
 .stat-label{font-size:11px;color:var(--muted)}
-.green{color:var(--green)}.red{color:var(--red)}.amber{color:var(--amber)}.blue{color:var(--blue)}
-.field{margin-bottom:14px}
-.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:500}
-.field input,.field select,.field textarea{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:11px 13px;color:var(--text);font-size:15px;transition:border .15s}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green)}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px;font-weight:500}
+.field input,.field select,.field textarea{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:15px;transition:border .15s}
+.field input:focus,.field select:focus{border-color:var(--green)}
 .field select option{background:var(--surface)}
-.field textarea{resize:none;height:72px}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn{width:100%;padding:14px;border-radius:10px;font-size:15px;font-weight:600;transition:opacity .15s}
+.btn{width:100%;padding:13px;border-radius:10px;font-size:15px;font-weight:600;transition:opacity .15s}
 .btn:active{opacity:.75}
 .btn-green{background:var(--green);color:#000}
+.btn-red{background:var(--red);color:#fff}
 .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-blue{background:var(--blue);color:#fff}
 .bet-card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:14px;margin-bottom:10px}
 .bet-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
 .bet-event{font-size:14px;font-weight:600;line-height:1.3}
-.bet-meta{font-size:12px;color:var(--muted);margin-top:3px}
-.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600}
+.bet-meta{font-size:12px;color:var(--muted);margin-top:2px}
+.badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
 .badge-open{background:var(--blue-bg);color:var(--blue)}
 .badge-won{background:var(--green-bg);color:var(--green)}
 .badge-lost{background:var(--red-bg);color:var(--red)}
 .badge-settled{background:#27272a;color:var(--muted)}
+.badge-sport{background:var(--purple-bg);color:var(--purple)}
 .bet-detail{display:flex;justify-content:space-between;font-size:13px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
 .bet-actions{display:flex;gap:8px;margin-top:10px}
-.bet-actions button{flex:1;padding:9px;border-radius:8px;font-size:13px;font-weight:600;border:none}
+.bet-actions button{flex:1;padding:9px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer}
 .btn-win{background:var(--green-bg);color:var(--green)}
 .btn-void{background:#27272a;color:var(--muted)}
-#name-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70dvh;padding:32px;text-align:center}
+#name-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80dvh;padding:32px;text-align:center}
 #name-screen h1{font-size:28px;font-weight:800;margin-bottom:8px}
 #name-screen p{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6}
 #name-screen input{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;color:var(--text);font-size:17px;text-align:center;margin-bottom:14px}
 #name-screen input:focus{border-color:var(--green)}
-.odds-pill{display:inline-block;background:var(--amber-bg);color:var(--amber);border-radius:6px;padding:2px 8px;font-size:13px;font-weight:700}
-.empty{text-align:center;padding:48px 16px;color:var(--muted)}
-.empty svg{width:40px;height:40px;stroke:var(--dim);fill:none;stroke-width:1.5;margin:0 auto 12px;display:block}
+.odds-pill{display:inline-block;background:var(--amber-bg);color:var(--amber);border-radius:6px;padding:2px 7px;font-size:12px;font-weight:700}
+.empty{text-align:center;padding:40px 16px;color:var(--muted)}
+.empty svg{width:36px;height:36px;stroke:var(--dim);fill:none;stroke-width:1.5;margin:0 auto 10px;display:block}
 .empty p{font-size:14px}
-.modal-wrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;align-items:flex-end;justify-content:center}
+.modal-wrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:flex-end;justify-content:center}
 .modal-wrap.open{display:flex}
-.modal{background:var(--surface);border-radius:20px 20px 0 0;padding:24px 20px 36px;width:100%;max-width:480px;border-top:1px solid var(--border)}
-.modal h3{font-size:18px;font-weight:700;margin-bottom:18px}
-.modal-close{float:right;background:var(--card);border:none;color:var(--muted);width:28px;height:28px;border-radius:50%;font-size:16px;line-height:28px;text-align:center;margin-top:-2px;cursor:pointer}
-#toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:10px 20px;border-radius:30px;font-size:13px;font-weight:600;opacity:0;transition:opacity .2s;z-index:300;white-space:nowrap}
+.modal{background:var(--surface);border-radius:20px 20px 0 0;padding:22px 18px 40px;width:100%;max-width:480px;border-top:1px solid var(--border);max-height:85dvh;overflow-y:auto}
+.modal h3{font-size:17px;font-weight:700;margin-bottom:16px}
+.modal-close{float:right;background:var(--card);border:none;color:var(--muted);width:28px;height:28px;border-radius:50%;font-size:15px;line-height:28px;text-align:center;margin-top:-2px;cursor:pointer}
+#toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:9px 18px;border-radius:30px;font-size:13px;font-weight:600;opacity:0;transition:opacity .2s;z-index:300;white-space:nowrap;pointer-events:none}
 #toast.show{opacity:1}
 .divider{height:1px;background:var(--border);margin:16px 0}
+.tx-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
+.tx-row:last-child{border-bottom:none}
+.tx-label{font-size:13px;color:var(--text)}
+.tx-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.tx-amt{font-size:14px;font-weight:700}
+.wallet-balance{font-size:36px;font-weight:800;text-align:center;margin:8px 0 4px;color:var(--green)}
+.wallet-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:20px}
+.seg{display:flex;background:var(--card);border-radius:10px;padding:3px;gap:3px;margin-bottom:16px}
+.seg-btn{flex:1;padding:8px;border-radius:8px;font-size:13px;font-weight:600;background:none;border:none;color:var(--muted);transition:all .15s}
+.seg-btn.active{background:var(--surface);color:var(--text)}
+.sport-chip{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:600;margin-right:4px;margin-bottom:4px}
+.loading-pulse{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 </style>
 </head>
 <body>
 
+<!-- PIN GATE -->
 <div id="pin-gate" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:999;flex-direction:column;align-items:center;justify-content:center;padding:32px;text-align:center">
   <div style="font-size:36px;margin-bottom:8px">🎰</div>
   <h2 style="font-size:22px;font-weight:800;margin-bottom:6px">Bookie login</h2>
-  <p style="font-size:14px;color:var(--muted);margin-bottom:24px">Enter your PIN to manage events and settle bets</p>
-  <input id="pin-input" type="password" inputmode="numeric" maxlength="6" placeholder="Enter PIN" style="width:100%;max-width:280px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;color:var(--text);font-size:20px;text-align:center;letter-spacing:6px;margin-bottom:14px"/>
-  <button class="btn btn-green" style="max-width:280px" onclick="checkPin()">Unlock bookie view</button>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:24px">Enter your PIN to manage events and balances</p>
+  <input id="pin-input" type="password" inputmode="numeric" maxlength="6" placeholder="PIN" style="width:100%;max-width:260px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;color:var(--text);font-size:20px;text-align:center;letter-spacing:6px;margin-bottom:14px"/>
+  <button class="btn btn-green" style="max-width:260px" onclick="checkPin()">Unlock</button>
   <button onclick="hidePinGate()" style="margin-top:12px;background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer">Cancel</button>
-  <p id="pin-err" style="color:var(--red);font-size:13px;margin-top:10px;display:none">Wrong PIN. Try again.</p>
+  <p id="pin-err" style="color:var(--red);font-size:13px;margin-top:10px;display:none">Wrong PIN.</p>
 </div>
 
+<!-- NAME GATE -->
 <div id="name-screen" style="display:none">
   <div style="font-size:48px;margin-bottom:12px">🎲</div>
   <h1>BookieApp</h1>
@@ -103,6 +120,7 @@ input,select,textarea{font-family:var(--font);outline:none}
   <button class="btn btn-green" onclick="saveBettorName()">Get started</button>
 </div>
 
+<!-- MAIN APP -->
 <div id="main-app" style="display:none">
   <div id="nav">
     <button class="nav-tab active" onclick="showScreen('events')" id="tab-events">
@@ -110,8 +128,12 @@ input,select,textarea{font-family:var(--font);outline:none}
       Events
     </button>
     <button class="nav-tab" onclick="showScreen('mybets')" id="tab-mybets">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       My bets
+    </button>
+    <button class="nav-tab" onclick="showScreen('wallet')" id="tab-wallet">
+      <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+      Wallet
     </button>
     <button class="nav-tab" onclick="showScreen('leaderboard')" id="tab-leaderboard">
       <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
@@ -123,36 +145,69 @@ input,select,textarea{font-family:var(--font);outline:none}
     </button>
   </div>
 
+  <!-- EVENTS -->
   <div id="screen-events" class="screen active">
     <div class="page-title">Open events</div>
     <div class="page-sub" id="bettor-greeting">Place your bets</div>
+    <div id="sport-filter" style="margin-bottom:14px;display:flex;flex-wrap:wrap;gap:6px"></div>
     <div id="events-list"></div>
   </div>
 
+  <!-- MY BETS -->
   <div id="screen-mybets" class="screen">
     <div class="page-title">My bets</div>
     <div class="stats">
-      <div class="stat"><div class="stat-val green" id="mb-won">£0</div><div class="stat-label">Total won</div></div>
-      <div class="stat"><div class="stat-val red" id="mb-lost">£0</div><div class="stat-label">Total lost</div></div>
+      <div class="stat"><div class="stat-val" id="mb-won" style="color:var(--green)">£0.00</div><div class="stat-label">Total won</div></div>
+      <div class="stat"><div class="stat-val" id="mb-lost" style="color:var(--red)">£0.00</div><div class="stat-label">Total lost</div></div>
     </div>
     <div id="mybets-list"></div>
   </div>
 
+  <!-- WALLET -->
+  <div id="screen-wallet" class="screen">
+    <div class="page-title">Wallet</div>
+    <div class="wallet-balance" id="wallet-balance">£0.00</div>
+    <div class="wallet-sub" id="wallet-user-name">Your balance</div>
+    <div class="row2" style="margin-bottom:16px">
+      <button class="btn btn-green" onclick="openWalletModal('deposit')">+ Deposit</button>
+      <button class="btn btn-outline" onclick="openWalletModal('withdraw')">− Withdraw</button>
+    </div>
+    <div class="card">
+      <div class="card-label">Transaction history</div>
+      <div id="tx-list"><div class="empty" style="padding:20px 0"><p>No transactions yet.</p></div></div>
+    </div>
+  </div>
+
+  <!-- LEADERBOARD -->
   <div id="screen-leaderboard" class="screen">
     <div class="page-title">Standings</div>
     <div class="page-sub">Net profit / loss across all settled bets</div>
     <div id="leaderboard-list"></div>
   </div>
 
+  <!-- BOOKIE -->
   <div id="screen-bookie" class="screen">
     <div class="page-title">Bookie panel</div>
     <div class="stats">
-      <div class="stat"><div class="stat-val green" id="bk-profit">£0</div><div class="stat-label">House profit</div></div>
+      <div class="stat"><div class="stat-val" id="bk-profit" style="color:var(--green)">£0.00</div><div class="stat-label">House profit</div></div>
       <div class="stat"><div class="stat-val" id="bk-bets">0</div><div class="stat-label">Total bets</div></div>
     </div>
 
+    <!-- Import sports events -->
     <div class="card">
-      <div class="card-label">Create new event</div>
+      <div class="card-label">Import live sporting events</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+        <button class="btn-sport-import" data-sport="soccer" onclick="importSport('soccer')" style="flex:1;min-width:100px;padding:9px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:13px;cursor:pointer">⚽ Football</button>
+        <button class="btn-sport-import" data-sport="americanfootball_nfl" onclick="importSport('americanfootball_nfl')" style="flex:1;min-width:100px;padding:9px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:13px;cursor:pointer">🏈 NFL</button>
+        <button class="btn-sport-import" data-sport="basketball_nba" onclick="importSport('basketball_nba')" style="flex:1;min-width:100px;padding:9px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:13px;cursor:pointer">🏀 NBA</button>
+        <button class="btn-sport-import" data-sport="tennis_atp" onclick="importSport('tennis_atp')" style="flex:1;min-width:100px;padding:9px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:13px;cursor:pointer">🎾 Tennis</button>
+      </div>
+      <div id="import-status" style="font-size:13px;color:var(--muted);min-height:18px"></div>
+    </div>
+
+    <!-- Create custom event -->
+    <div class="card">
+      <div class="card-label">Create custom event</div>
       <div class="field"><label>Event title</label><input id="ev-title" type="text" placeholder="Man Utd vs Arsenal — match result"/></div>
       <div class="row2">
         <div class="field"><label>Category</label>
@@ -166,32 +221,43 @@ input,select,textarea{font-family:var(--font);outline:none}
         </div>
         <div class="field"><label>Closes</label><input id="ev-closes" type="datetime-local"/></div>
       </div>
-      <div class="card-label" style="margin-top:4px;margin-bottom:10px">Outcomes and odds</div>
-      <div id="outcomes-builder"></div>
-      <button onclick="addOutcome()" class="btn btn-outline" style="margin-bottom:14px;font-size:13px">+ Add outcome</button>
+      <div class="card-label" style="margin-top:4px">Outcomes and odds</div>
+      <div id="outcomes-builder" style="margin:10px 0"></div>
+      <button onclick="addOutcome()" class="btn btn-outline" style="margin-bottom:12px;font-size:13px">+ Add outcome</button>
       <button class="btn btn-green" onclick="createEvent()">Publish event</button>
     </div>
 
+    <!-- Player wallets -->
+    <div class="divider"></div>
+    <div style="font-size:15px;font-weight:600;margin-bottom:12px">Player wallets</div>
+    <div id="bookie-wallets-list"></div>
+
+    <!-- All events -->
     <div class="divider"></div>
     <div style="font-size:15px;font-weight:600;margin-bottom:12px">All events</div>
     <div id="bookie-events-list"></div>
 
+    <!-- Settings -->
     <div class="divider"></div>
     <div style="font-size:15px;font-weight:600;margin-bottom:12px">Settings</div>
     <div class="card">
-      <div class="field"><label>Change PIN</label><input id="new-pin" type="password" inputmode="numeric" maxlength="6" placeholder="New PIN (4–6 digits)"/></div>
+      <div class="field"><label>API key for live odds (The Odds API — free tier)</label><input id="odds-api-key" type="text" placeholder="Paste your API key from the-odds-api.com"/></div>
+      <button class="btn btn-outline" onclick="saveApiKey()" style="font-size:13px;margin-bottom:10px">Save API key</button>
+      <div class="field"><label>Change bookie PIN</label><input id="new-pin" type="password" inputmode="numeric" maxlength="6" placeholder="New PIN (4–6 digits)"/></div>
       <button class="btn btn-outline" onclick="changePin()" style="font-size:13px">Update PIN</button>
     </div>
   </div>
 </div>
 
+<!-- BET MODAL -->
 <div class="modal-wrap" id="bet-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeBetModal()">✕</button>
     <h3 id="bm-title">Place a bet</h3>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:14px">Balance: <strong id="bm-balance" style="color:var(--green)">£0.00</strong></div>
     <div class="field"><label>Select outcome</label><select id="bm-outcome"></select></div>
     <div class="field"><label>Stake (£)</label><input id="bm-stake" type="number" min="0.5" step="0.5" placeholder="5"/></div>
-    <div class="card" style="margin-bottom:16px;padding:12px">
+    <div class="card" style="margin-bottom:14px;padding:12px">
       <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px">
         <span style="color:var(--muted)">Odds</span><span id="bm-odds-display" class="odds-pill">—</span>
       </div>
@@ -203,121 +269,241 @@ input,select,textarea{font-family:var(--font);outline:none}
   </div>
 </div>
 
+<!-- WALLET MODAL -->
+<div class="modal-wrap" id="wallet-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeWalletModal()">✕</button>
+    <h3 id="wm-title">Deposit funds</h3>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:14px">Current balance: <strong id="wm-balance" style="color:var(--green)">£0.00</strong></div>
+    <div class="field"><label>Amount (£)</label><input id="wm-amount" type="number" min="1" step="1" placeholder="20"/></div>
+    <div class="field"><label>Note (optional)</label><input id="wm-note" type="text" placeholder="Cash handed to bookie" maxlength="60"/></div>
+    <button class="btn btn-green" id="wm-submit" onclick="submitWallet()">Confirm</button>
+  </div>
+</div>
+
+<!-- SETTLE MODAL -->
 <div class="modal-wrap" id="settle-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeSettleModal()">✕</button>
     <h3>Settle event</h3>
-    <p id="settle-event-name" style="font-size:14px;color:var(--muted);margin-bottom:16px"></p>
+    <p id="settle-event-name" style="font-size:14px;color:var(--muted);margin-bottom:14px"></p>
     <div class="field"><label>Winning outcome</label><select id="settle-outcome"></select></div>
-    <div style="background:var(--amber-bg);border-radius:8px;padding:12px;font-size:13px;color:var(--amber);margin-bottom:16px">
-      All bets on the winning outcome will be marked Won. All others Lost. This cannot be undone.
+    <div style="background:var(--amber-bg);border-radius:8px;padding:11px;font-size:13px;color:var(--amber);margin-bottom:14px">
+      Winners will be paid out automatically from their virtual balance. This cannot be undone.
     </div>
     <button class="btn btn-green" onclick="settleEvent()">Settle and pay out</button>
   </div>
 </div>
 
-<div id="toast">Saved!</div>
+<!-- BOOKIE WALLET MODAL -->
+<div class="modal-wrap" id="bookie-wallet-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeBookieWalletModal()">✕</button>
+    <h3 id="bwm-title">Adjust balance</h3>
+    <div style="font-size:13px;color:var(--muted);margin-bottom:14px">Player: <strong id="bwm-player"></strong> · Balance: <strong id="bwm-balance" style="color:var(--green)"></strong></div>
+    <div class="seg" id="bwm-seg">
+      <button class="seg-btn active" onclick="setBwmType('credit')">Add funds</button>
+      <button class="seg-btn" onclick="setBwmType('debit')">Deduct funds</button>
+    </div>
+    <div class="field"><label>Amount (£)</label><input id="bwm-amount" type="number" min="0.01" step="0.01" placeholder="20"/></div>
+    <div class="field"><label>Reason</label><input id="bwm-note" type="text" placeholder="Cash received / correction" maxlength="60"/></div>
+    <button class="btn btn-green" onclick="submitBookieWallet()">Apply</button>
+  </div>
+</div>
+
+<div id="toast">Done!</div>
 
 <script>
-const STORAGE_KEY = 'bookieapp_v2';
+const STORAGE_KEY = 'bookieapp_v3';
 let state = load();
 let currentUser = localStorage.getItem('bookieapp_user') || null;
 let bookieUnlocked = false;
 let activeEventId = null;
 let activeSettleId = null;
+let walletMode = 'deposit';
+let bwmMode = 'credit';
+let bwmPlayer = null;
+let activeFilter = 'all';
+let outcomeSeq = 0;
 
 function load() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultState(); }
-  catch { return defaultState(); }
+  try {
+    const s = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (s && s.version === 3) return s;
+    // Migrate from old version
+    const old = JSON.parse(localStorage.getItem('bookieapp_v2') || 'null');
+    const fresh = defaultState();
+    if (old) { fresh.events = old.events || []; fresh.bets = old.bets || []; fresh.pin = old.pin || '1234'; }
+    return fresh;
+  } catch(e) { return defaultState(); }
 }
-function defaultState() { return { pin: '1234', events: [], bets: [] }; }
+function defaultState() {
+  return { version:3, pin:'1234', oddsApiKey:'', events:[], bets:[], wallets:{}, transactions:[] };
+}
 function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-function uid() { return Math.random().toString(36).slice(2,9); }
-function fmt(n) { return '£' + Math.abs(n).toFixed(2); }
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+function fmt(n) { return '£' + Math.abs(parseFloat(n)||0).toFixed(2); }
+function fmtSigned(n) { return (n>=0?'+':'-') + fmt(n); }
 function toast(msg, col) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.style.background = col || 'var(--green)';
-  t.style.color = col ? '#fff' : '#000';
+  t.style.color = (col && col !== 'var(--green)') ? '#fff' : '#000';
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2200);
+  setTimeout(function(){t.classList.remove('show');}, 2200);
 }
 
+function getBalance(user) {
+  return parseFloat(state.wallets[user] || 0);
+}
+function adjustBalance(user, amount, type, note, relatedId) {
+  if (!state.wallets[user]) state.wallets[user] = 0;
+  state.wallets[user] = parseFloat((getBalance(user) + amount).toFixed(2));
+  state.transactions.push({
+    id: uid(), user: user, amount: amount, type: type,
+    note: note || '', relatedId: relatedId || null, ts: Date.now()
+  });
+}
+
+// ── Boot ──────────────────────────────────────────────────────────
 window.onload = function() {
   if (!currentUser) {
     document.getElementById('name-screen').style.display = 'flex';
   } else {
-    document.getElementById('main-app').style.display = 'block';
-    document.getElementById('bettor-greeting').textContent = 'Hello, ' + currentUser + ' — pick an event and place your bet';
-    renderEvents();
+    bootMain();
   }
 };
-
+function bootMain() {
+  document.getElementById('main-app').style.display = 'block';
+  document.getElementById('bettor-greeting').textContent = 'Hello, ' + currentUser + ' — pick an event and place your bet';
+  if (!state.wallets[currentUser]) { state.wallets[currentUser] = 0; save(); }
+  renderEvents();
+  renderWallet();
+}
 function saveBettorName() {
   const n = document.getElementById('bettor-name-input').value.trim();
   if (!n) { alert('Enter your name first.'); return; }
   currentUser = n;
   localStorage.setItem('bookieapp_user', n);
   document.getElementById('name-screen').style.display = 'none';
-  document.getElementById('main-app').style.display = 'block';
-  document.getElementById('bettor-greeting').textContent = 'Hello, ' + n + ' — pick an event and place your bet';
-  renderEvents();
+  bootMain();
 }
 
+// ── Nav ───────────────────────────────────────────────────────────
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active');});
   document.getElementById('screen-' + id).classList.add('active');
   document.getElementById('tab-' + id).classList.add('active');
   if (id === 'mybets') renderMyBets();
   if (id === 'leaderboard') renderLeaderboard();
+  if (id === 'wallet') renderWallet();
   if (id === 'bookie') renderBookiePanel();
 }
-
 function requestBookie() {
   if (bookieUnlocked) { showScreen('bookie'); return; }
-  const gate = document.getElementById('pin-gate');
-  gate.style.display = 'flex';
+  document.getElementById('pin-gate').style.display = 'flex';
   document.getElementById('pin-input').value = '';
   document.getElementById('pin-err').style.display = 'none';
 }
 function hidePinGate() { document.getElementById('pin-gate').style.display = 'none'; }
 function checkPin() {
   if (document.getElementById('pin-input').value === state.pin) {
-    bookieUnlocked = true;
-    hidePinGate();
-    showScreen('bookie');
-  } else {
-    document.getElementById('pin-err').style.display = 'block';
-  }
+    bookieUnlocked = true; hidePinGate(); showScreen('bookie');
+  } else { document.getElementById('pin-err').style.display = 'block'; }
 }
 function changePin() {
   const p = document.getElementById('new-pin').value.trim();
   if (p.length < 4) { alert('PIN must be 4–6 digits.'); return; }
-  state.pin = p;
-  save();
-  toast('PIN updated');
+  state.pin = p; save(); toast('PIN updated');
   document.getElementById('new-pin').value = '';
 }
+function saveApiKey() {
+  const k = document.getElementById('odds-api-key').value.trim();
+  state.oddsApiKey = k; save(); toast('API key saved');
+}
 
-// ── Outcomes builder ─────────────────────────────────────────────
-let outcomeSeq = 0;
+// ── Sport import ──────────────────────────────────────────────────
+const SPORT_LABELS = {
+  soccer:'Football', americanfootball_nfl:'NFL',
+  basketball_nba:'NBA', tennis_atp:'Tennis'
+};
+const SPORT_EMOJI = {
+  soccer:'⚽', americanfootball_nfl:'🏈', basketball_nba:'🏀', tennis_atp:'🎾'
+};
+
+async function importSport(sport) {
+  const statusEl = document.getElementById('import-status');
+  const key = state.oddsApiKey;
+  if (!key) {
+    statusEl.textContent = 'Add your API key in Settings below first. Get a free key at the-odds-api.com';
+    statusEl.style.color = 'var(--amber)';
+    return;
+  }
+  statusEl.textContent = 'Fetching ' + SPORT_LABELS[sport] + ' events...';
+  statusEl.style.color = 'var(--muted)';
+  statusEl.classList.add('loading-pulse');
+  try {
+    const url = 'https://api.the-odds-api.com/v4/sports/' + sport + '/odds/?apiKey=' + key + '&regions=uk&markets=h2h&oddsFormat=decimal&dateFormat=iso';
+    const res = await fetch(url);
+    if (!res.ok) {
+      const err = await res.json().catch(function(){return {};});
+      throw new Error(err.message || 'API error ' + res.status);
+    }
+    const games = await res.json();
+    if (!games.length) { statusEl.textContent = 'No upcoming ' + SPORT_LABELS[sport] + ' events found.'; statusEl.classList.remove('loading-pulse'); return; }
+    let added = 0;
+    games.slice(0, 10).forEach(function(g) {
+      const exists = state.events.some(function(e){ return e.externalId === g.id; });
+      if (exists) return;
+      const outcomes = [];
+      if (g.bookmakers && g.bookmakers[0] && g.bookmakers[0].markets && g.bookmakers[0].markets[0]) {
+        g.bookmakers[0].markets[0].outcomes.forEach(function(o) {
+          outcomes.push({ id: uid(), name: o.name, odds: parseFloat(o.price.toFixed(2)) });
+        });
+      }
+      if (outcomes.length < 2) return;
+      state.events.push({
+        id: uid(), externalId: g.id,
+        title: g.home_team + ' vs ' + g.away_team,
+        cat: SPORT_LABELS[sport],
+        sport: sport,
+        closes: g.commence_time,
+        outcomes: outcomes,
+        status: 'open', winner: null, createdAt: Date.now()
+      });
+      added++;
+    });
+    save();
+    statusEl.classList.remove('loading-pulse');
+    statusEl.style.color = 'var(--green)';
+    statusEl.textContent = 'Added ' + added + ' new ' + SPORT_LABELS[sport] + ' events.';
+    renderEvents();
+    renderBookieEventsList();
+  } catch(err) {
+    statusEl.classList.remove('loading-pulse');
+    statusEl.style.color = 'var(--red)';
+    statusEl.textContent = 'Error: ' + err.message;
+  }
+}
+
+// ── Outcomes builder ──────────────────────────────────────────────
 function initOutcomes() {
   document.getElementById('outcomes-builder').innerHTML = '';
   outcomeSeq = 0;
-  addOutcome('Home win', '2.00');
-  addOutcome('Away win', '3.50');
+  addOutcome('Home win','2.00');
+  addOutcome('Away win','3.50');
 }
 function addOutcome(label, odds) {
   outcomeSeq++;
   const id = 'oc' + outcomeSeq;
   const div = document.createElement('div');
   div.id = id;
-  div.style.cssText = 'display:grid;grid-template-columns:1fr 80px 36px;gap:8px;align-items:center;margin-bottom:8px';
+  div.style.cssText = 'display:grid;grid-template-columns:1fr 80px 36px;gap:6px;align-items:center;margin-bottom:8px';
   div.innerHTML =
-    '<input type="text" placeholder="Outcome name" value="' + (label||'') + '" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 11px;color:var(--text);font-size:14px"/>' +
-    '<input type="text" inputmode="decimal" placeholder="Odds" value="' + (odds||'') + '" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 11px;color:var(--text);font-size:14px;text-align:center"/>' +
-    '<button onclick="document.getElementById(\'' + id + '\').remove()" style="background:var(--card);border:1px solid var(--border);border-radius:8px;width:36px;height:38px;color:var(--muted);font-size:16px">✕</button>';
+    '<input type="text" placeholder="Outcome name" value="'+(label||'')+'" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 10px;color:var(--text);font-size:14px"/>' +
+    '<input type="text" inputmode="decimal" placeholder="Odds" value="'+(odds||'')+'" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 8px;color:var(--text);font-size:14px;text-align:center"/>' +
+    '<button onclick="document.getElementById(\''+id+'\').remove()" style="background:var(--card);border:1px solid var(--border);border-radius:8px;width:36px;height:38px;color:var(--muted);font-size:15px;cursor:pointer">✕</button>';
   document.getElementById('outcomes-builder').appendChild(div);
 }
 
@@ -325,22 +511,19 @@ function addOutcome(label, odds) {
 function createEvent() {
   const title = document.getElementById('ev-title').value.trim();
   if (!title) { alert('Add an event title.'); return; }
-  const cat = document.getElementById('ev-cat').value;
-  const closes = document.getElementById('ev-closes').value;
   const rows = document.querySelectorAll('#outcomes-builder > div');
-  if (rows.length === 0) { alert('Add at least 2 outcomes first.'); return; }
   const outcomes = [];
   rows.forEach(function(r) {
-    const inputs = r.querySelectorAll('input');
-    const name = inputs[0].value.trim();
-    const odds = parseFloat(inputs[1].value);
-    if (name && odds > 0) outcomes.push({ id: uid(), name: name, odds: odds });
+    const ins = r.querySelectorAll('input');
+    const n = ins[0].value.trim(), o = parseFloat(ins[1].value);
+    if (n && o > 0) outcomes.push({ id: uid(), name: n, odds: o });
   });
-  if (outcomes.length < 2) {
-    alert('Need at least 2 valid outcomes.\n\nMake sure each row has:\n- An outcome name\n- A valid number for odds (e.g. 2.00)');
-    return;
-  }
-  state.events.push({ id: uid(), title: title, cat: cat, closes: closes, outcomes: outcomes, status: 'open', winner: null, createdAt: Date.now() });
+  if (outcomes.length < 2) { alert('Add at least 2 outcomes with valid odds.'); return; }
+  state.events.push({
+    id: uid(), title: title, cat: document.getElementById('ev-cat').value,
+    closes: document.getElementById('ev-closes').value,
+    outcomes: outcomes, status: 'open', winner: null, createdAt: Date.now()
+  });
   save();
   document.getElementById('ev-title').value = '';
   document.getElementById('ev-closes').value = '';
@@ -351,119 +534,180 @@ function createEvent() {
   renderBookieStats();
 }
 
-// ── Events list ───────────────────────────────────────────────────
+// ── Events screen ─────────────────────────────────────────────────
 function renderEvents() {
+  const open = state.events.filter(function(e){ return e.status==='open'; });
+  // Build sport filter chips
+  const sports = ['all'];
+  open.forEach(function(e){ if (e.sport && sports.indexOf(e.sport)<0) sports.push(e.sport); });
+  const filterEl = document.getElementById('sport-filter');
+  if (sports.length > 1) {
+    filterEl.innerHTML = sports.map(function(s) {
+      const active = activeFilter === s;
+      const label = s === 'all' ? 'All' : (SPORT_EMOJI[s]||'') + ' ' + (SPORT_LABELS[s]||s);
+      return '<button onclick="setFilter(\''+s+'\')" style="padding:6px 12px;border-radius:20px;border:1px solid '+(active?'var(--green)':'var(--border)')+';background:'+(active?'var(--green-bg)':'var(--card)')+';color:'+(active?'var(--green)':'var(--muted)')+';font-size:12px;font-weight:600;cursor:pointer">'+label+'</button>';
+    }).join('');
+  } else { filterEl.innerHTML = ''; }
+
+  const filtered = activeFilter === 'all' ? open : open.filter(function(e){ return e.sport === activeFilter; });
   const el = document.getElementById('events-list');
-  const open = state.events.filter(function(e) { return e.status === 'open'; });
-  if (!open.length) {
-    el.innerHTML = '<div class="empty"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p>No open events right now.<br>Check back soon.</p></div>';
+  if (!filtered.length) {
+    el.innerHTML = '<div class="empty"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p>No open events right now.</p></div>';
     return;
   }
-  el.innerHTML = open.map(function(ev) {
-    const myBets = state.bets.filter(function(b) { return b.eventId === ev.id && b.bettor === currentUser; });
-    const myStake = myBets.reduce(function(s,b) { return s + b.stake; }, 0);
+  el.innerHTML = filtered.map(function(ev) {
+    const myBets = state.bets.filter(function(b){ return b.eventId===ev.id && b.bettor===currentUser; });
+    const myStake = myBets.reduce(function(s,b){ return s+b.stake; },0);
+    const sportChip = ev.sport ? '<span class="badge badge-sport" style="margin-left:6px">'+(SPORT_EMOJI[ev.sport]||'')+' '+SPORT_LABELS[ev.sport]+'</span>' : '';
     return '<div class="bet-card">' +
       '<div class="bet-header"><div>' +
-        '<div class="bet-event">' + ev.title + '</div>' +
-        '<div class="bet-meta">' + ev.cat + (ev.closes ? ' · Closes ' + fmtDate(ev.closes) : '') + '</div>' +
-        (myBets.length ? '<div class="bet-meta" style="color:var(--amber);margin-top:2px">Your stake: ' + fmt(myStake) + '</div>' : '') +
+        '<div class="bet-event">' + ev.title + sportChip + '</div>' +
+        '<div class="bet-meta">' + ev.cat + (ev.closes?' · '+fmtDate(ev.closes):'') + '</div>' +
+        (myBets.length?'<div class="bet-meta" style="color:var(--amber);margin-top:2px">Your stake: '+fmt(myStake)+'</div>':'') +
       '</div><span class="badge badge-open">Open</span></div>' +
-      '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">' +
-        ev.outcomes.map(function(o) {
-          return '<span style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:13px"><span style="color:var(--muted)">' + o.name + '</span> <span class="odds-pill">' + o.odds + 'x</span></span>';
-        }).join('') +
+      '<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px">' +
+        ev.outcomes.map(function(o){ return '<span style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:5px 9px;font-size:12px"><span style="color:var(--muted)">'+o.name+'</span> <span class="odds-pill">'+o.odds+'x</span></span>'; }).join('') +
       '</div>' +
-      '<button class="btn btn-green" onclick="openBetModal(\'' + ev.id + '\')">Place bet</button>' +
+      '<button class="btn btn-green" onclick="openBetModal(\''+ev.id+'\')">Place bet</button>' +
     '</div>';
   }).join('');
 }
+function setFilter(f) { activeFilter = f; renderEvents(); }
 
 // ── Bet modal ─────────────────────────────────────────────────────
 function openBetModal(eventId) {
   activeEventId = eventId;
-  const ev = state.events.find(function(e) { return e.id === eventId; });
+  const ev = state.events.find(function(e){ return e.id===eventId; });
   document.getElementById('bm-title').textContent = ev.title;
+  document.getElementById('bm-balance').textContent = fmt(getBalance(currentUser));
   const sel = document.getElementById('bm-outcome');
-  sel.innerHTML = ev.outcomes.map(function(o) {
-    return '<option value="' + o.id + '" data-odds="' + o.odds + '">' + o.name + ' — ' + o.odds + 'x</option>';
-  }).join('');
+  sel.innerHTML = ev.outcomes.map(function(o){ return '<option value="'+o.id+'" data-odds="'+o.odds+'">'+o.name+' — '+o.odds+'x</option>'; }).join('');
   document.getElementById('bm-stake').value = '';
   updateReturn();
   sel.onchange = updateReturn;
   document.getElementById('bm-stake').oninput = updateReturn;
   document.getElementById('bet-modal').classList.add('open');
 }
-function closeBetModal() { document.getElementById('bet-modal').classList.remove('open'); }
+function closeBetModal(){ document.getElementById('bet-modal').classList.remove('open'); }
 function updateReturn() {
   const sel = document.getElementById('bm-outcome');
   const odds = parseFloat(sel.selectedOptions[0] ? sel.selectedOptions[0].dataset.odds : 0);
-  const stake = parseFloat(document.getElementById('bm-stake').value) || 0;
-  document.getElementById('bm-odds-display').textContent = odds + 'x';
-  document.getElementById('bm-return').textContent = '£' + (stake * odds).toFixed(2);
+  const stake = parseFloat(document.getElementById('bm-stake').value)||0;
+  document.getElementById('bm-odds-display').textContent = odds+'x';
+  document.getElementById('bm-return').textContent = '£'+(stake*odds).toFixed(2);
 }
 function placeBet() {
-  const ev = state.events.find(function(e) { return e.id === activeEventId; });
+  const ev = state.events.find(function(e){ return e.id===activeEventId; });
   const sel = document.getElementById('bm-outcome');
   const outcomeId = sel.value;
-  const outcome = ev.outcomes.find(function(o) { return o.id === outcomeId; });
+  const outcome = ev.outcomes.find(function(o){ return o.id===outcomeId; });
   const stake = parseFloat(document.getElementById('bm-stake').value);
   if (!stake || stake < 0.5) { alert('Minimum stake is £0.50'); return; }
-  state.bets.push({ id: uid(), eventId: ev.id, eventTitle: ev.title, outcomeId: outcomeId, outcomeName: outcome.name, odds: outcome.odds, stake: stake, bettor: currentUser, status: 'open', placedAt: Date.now() });
+  const bal = getBalance(currentUser);
+  if (stake > bal) { alert('Insufficient balance. Your balance is '+fmt(bal)+'. Please deposit funds in the Wallet tab.'); return; }
+  adjustBalance(currentUser, -stake, 'bet', 'Bet: '+ev.title+' — '+outcome.name, null);
+  const betId = uid();
+  state.bets.push({ id:betId, eventId:ev.id, eventTitle:ev.title, outcomeId:outcomeId, outcomeName:outcome.name, odds:outcome.odds, stake:stake, bettor:currentUser, status:'open', placedAt:Date.now() });
   save();
   closeBetModal();
-  toast('Bet placed! Good luck');
+  toast('Bet placed! Stake deducted from balance.');
   renderEvents();
+  renderWallet();
+}
+
+// ── Wallet ────────────────────────────────────────────────────────
+function renderWallet() {
+  const bal = getBalance(currentUser);
+  document.getElementById('wallet-balance').textContent = fmt(bal);
+  document.getElementById('wallet-user-name').textContent = currentUser + "'s balance";
+  const txs = state.transactions.filter(function(t){ return t.user===currentUser; }).slice().reverse();
+  const el = document.getElementById('tx-list');
+  if (!txs.length) { el.innerHTML = '<div class="empty" style="padding:20px 0"><p>No transactions yet.</p></div>'; return; }
+  el.innerHTML = txs.map(function(tx) {
+    const pos = tx.amount >= 0;
+    const icons = { deposit:'💳', withdraw:'💸', bet:'🎲', win:'🏆', 'bookie-credit':'✅', 'bookie-debit':'🔻' };
+    return '<div class="tx-row">' +
+      '<div><div class="tx-label">'+(icons[tx.type]||'·')+' '+txTypeLabel(tx.type)+'</div>' +
+        (tx.note?'<div class="tx-sub">'+tx.note+'</div>':'')+
+        '<div class="tx-sub">'+fmtDateTime(tx.ts)+'</div></div>' +
+      '<div class="tx-amt" style="color:'+(pos?'var(--green)':'var(--red)')+'">'+fmtSigned(tx.amount)+'</div>' +
+    '</div>';
+  }).join('');
+}
+function txTypeLabel(t) {
+  return {deposit:'Deposit',withdraw:'Withdrawal',bet:'Bet placed',win:'Winnings paid',
+    'bookie-credit':'Added by bookie','bookie-debit':'Deducted by bookie'}[t] || t;
+}
+function openWalletModal(mode) {
+  walletMode = mode;
+  document.getElementById('wm-title').textContent = mode==='deposit' ? 'Deposit funds' : 'Withdraw funds';
+  document.getElementById('wm-balance').textContent = fmt(getBalance(currentUser));
+  document.getElementById('wm-amount').value = '';
+  document.getElementById('wm-note').value = '';
+  document.getElementById('wm-submit').textContent = mode==='deposit' ? 'Confirm deposit' : 'Confirm withdrawal';
+  document.getElementById('wallet-modal').classList.add('open');
+}
+function closeWalletModal(){ document.getElementById('wallet-modal').classList.remove('open'); }
+function submitWallet() {
+  const amount = parseFloat(document.getElementById('wm-amount').value);
+  if (!amount || amount <= 0) { alert('Enter a valid amount.'); return; }
+  const note = document.getElementById('wm-note').value.trim();
+  if (walletMode === 'withdraw') {
+    const bal = getBalance(currentUser);
+    if (amount > bal) { alert('Cannot withdraw more than your balance of '+fmt(bal)); return; }
+    adjustBalance(currentUser, -amount, 'withdraw', note || 'Withdrawal');
+    toast('Withdrawal recorded');
+  } else {
+    adjustBalance(currentUser, amount, 'deposit', note || 'Deposit');
+    toast('Deposit recorded');
+  }
+  save();
+  closeWalletModal();
+  renderWallet();
 }
 
 // ── My bets ───────────────────────────────────────────────────────
 function renderMyBets() {
-  const myBets = state.bets.filter(function(b) { return b.bettor === currentUser; }).sort(function(a,b) { return b.placedAt - a.placedAt; });
-  const won = myBets.filter(function(b) { return b.status === 'won'; }).reduce(function(s,b) { return s + b.stake * b.odds - b.stake; }, 0);
-  const lost = myBets.filter(function(b) { return b.status === 'lost'; }).reduce(function(s,b) { return s + b.stake; }, 0);
+  const myBets = state.bets.filter(function(b){ return b.bettor===currentUser; }).sort(function(a,b){ return b.placedAt-a.placedAt; });
+  const won = myBets.filter(function(b){ return b.status==='won'; }).reduce(function(s,b){ return s+b.stake*b.odds-b.stake; },0);
+  const lost = myBets.filter(function(b){ return b.status==='lost'; }).reduce(function(s,b){ return s+b.stake; },0);
   document.getElementById('mb-won').textContent = fmt(won);
   document.getElementById('mb-lost').textContent = fmt(lost);
   const el = document.getElementById('mybets-list');
-  if (!myBets.length) {
-    el.innerHTML = '<div class="empty"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p>No bets yet. Head to Events to place your first.</p></div>';
-    return;
-  }
-  const statusBadge = { open:'badge-open', won:'badge-won', lost:'badge-lost', void:'badge-settled' };
+  if (!myBets.length) { el.innerHTML = '<div class="empty"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><p>No bets yet.</p></div>'; return; }
+  const sb = {open:'badge-open',won:'badge-won',lost:'badge-lost',void:'badge-settled'};
   el.innerHTML = myBets.map(function(b) {
-    const ret = b.status === 'won' ? '+' + fmt(b.stake * b.odds - b.stake) : b.status === 'lost' ? '-' + fmt(b.stake) : '';
+    const ret = b.status==='won'?'+'+fmt(b.stake*b.odds-b.stake):b.status==='lost'?'-'+fmt(b.stake):'';
     return '<div class="bet-card">' +
-      '<div class="bet-header"><div><div class="bet-event">' + b.eventTitle + '</div><div class="bet-meta">' + b.outcomeName + '</div></div>' +
-      '<span class="badge ' + (statusBadge[b.status]||'badge-settled') + '">' + b.status + '</span></div>' +
+      '<div class="bet-header"><div><div class="bet-event">'+b.eventTitle+'</div><div class="bet-meta">'+b.outcomeName+'</div></div>' +
+      '<span class="badge '+(sb[b.status]||'badge-settled')+'">'+b.status+'</span></div>' +
       '<div class="bet-detail">' +
-        '<span style="color:var(--muted)">Stake: <strong style="color:var(--text)">' + fmt(b.stake) + '</strong></span>' +
-        '<span style="color:var(--muted)">Odds: <strong style="color:var(--amber)">' + b.odds + 'x</strong></span>' +
-        (ret ? '<span style="font-weight:700;color:' + (b.status==='won'?'var(--green)':'var(--red)') + '">' + ret + '</span>'
-             : '<span style="color:var(--muted)">Potential: <strong style="color:var(--green)">+' + fmt(b.stake*b.odds-b.stake) + '</strong></span>') +
+        '<span style="color:var(--muted)">Stake: <strong style="color:var(--text)">'+fmt(b.stake)+'</strong></span>' +
+        '<span style="color:var(--muted)">Odds: <strong style="color:var(--amber)">'+b.odds+'x</strong></span>' +
+        (ret?'<span style="font-weight:700;color:'+(b.status==='won'?'var(--green)':'var(--red)')+'">'+ret+'</span>':'<span style="color:var(--muted)">Pot: <strong style="color:var(--green)">+'+fmt(b.stake*b.odds-b.stake)+'</strong></span>') +
       '</div></div>';
   }).join('');
 }
 
 // ── Leaderboard ───────────────────────────────────────────────────
 function renderLeaderboard() {
-  const settled = state.bets.filter(function(b) { return b.status !== 'open'; });
   const players = {};
-  settled.forEach(function(b) {
+  state.bets.filter(function(b){ return b.status!=='open'; }).forEach(function(b) {
     if (!players[b.bettor]) players[b.bettor] = 0;
-    players[b.bettor] += b.status === 'won' ? b.stake * b.odds - b.stake : -b.stake;
+    players[b.bettor] += b.status==='won' ? b.stake*b.odds-b.stake : -b.stake;
   });
-  const sorted = Object.entries(players).sort(function(a,b) { return b[1]-a[1]; });
+  const sorted = Object.entries(players).sort(function(a,b){ return b[1]-a[1]; });
   const el = document.getElementById('leaderboard-list');
-  if (!sorted.length) {
-    el.innerHTML = '<div class="empty"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><p>No settled bets yet.</p></div>';
-    return;
-  }
+  if (!sorted.length) { el.innerHTML = '<div class="empty"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><p>No settled bets yet.</p></div>'; return; }
   const medals = ['🥇','🥈','🥉'];
-  el.innerHTML = sorted.map(function(entry, i) {
-    const name = entry[0], net = entry[1];
-    const betCount = state.bets.filter(function(b) { return b.bettor===name && b.status!=='open'; }).length;
+  el.innerHTML = sorted.map(function(entry,i) {
+    const name=entry[0], net=entry[1];
+    const bal = getBalance(name);
     return '<div class="bet-card" style="display:flex;align-items:center;gap:12px;padding:14px">' +
-      '<div style="font-size:20px;width:28px;text-align:center">' + (medals[i]||(i+1)) + '</div>' +
-      '<div style="flex:1"><div style="font-weight:600;font-size:15px">' + name + '</div><div style="font-size:12px;color:var(--muted)">' + betCount + ' settled bets</div></div>' +
-      '<div style="font-size:18px;font-weight:700;color:' + (net>=0?'var(--green)':'var(--red)') + '">' + (net>=0?'+':'') + fmt(net) + '</div>' +
+      '<div style="font-size:20px;width:28px;text-align:center">'+(medals[i]||(i+1))+'</div>' +
+      '<div style="flex:1"><div style="font-weight:600;font-size:15px">'+name+'</div>' +
+        '<div style="font-size:12px;color:var(--muted)">Balance: '+fmt(bal)+'</div></div>' +
+      '<div style="font-size:17px;font-weight:700;color:'+(net>=0?'var(--green)':'var(--red)')+'">'+fmtSigned(net)+'</div>' +
     '</div>';
   }).join('');
 }
@@ -471,96 +715,165 @@ function renderLeaderboard() {
 // ── Bookie panel ──────────────────────────────────────────────────
 function renderBookiePanel() {
   if (!bookieUnlocked) return;
-  // Only seed the outcomes builder on first open, never after
   if (!document.querySelector('#outcomes-builder > div')) initOutcomes();
+  if (state.oddsApiKey) document.getElementById('odds-api-key').value = state.oddsApiKey;
   renderBookieStats();
+  renderBookieWallets();
   renderBookieEventsList();
 }
-
 function renderBookieStats() {
   if (!bookieUnlocked) return;
-  const settled = state.bets.filter(function(b) { return b.status !== 'open'; });
-  const housePnl = settled.reduce(function(s,b) { return b.status==='won' ? s-(b.stake*b.odds-b.stake) : s+b.stake; }, 0);
-  document.getElementById('bk-profit').textContent = (housePnl >= 0 ? '' : '-') + fmt(housePnl);
-  document.getElementById('bk-profit').style.color = housePnl >= 0 ? 'var(--green)' : 'var(--red)';
+  const settled = state.bets.filter(function(b){ return b.status!=='open'; });
+  const pnl = settled.reduce(function(s,b){ return b.status==='won'?s-(b.stake*b.odds-b.stake):s+b.stake; },0);
+  document.getElementById('bk-profit').textContent = fmt(pnl);
+  document.getElementById('bk-profit').style.color = pnl>=0?'var(--green)':'var(--red)';
   document.getElementById('bk-bets').textContent = state.bets.length;
 }
-
+function renderBookieWallets() {
+  if (!bookieUnlocked) return;
+  const el = document.getElementById('bookie-wallets-list');
+  const players = Object.keys(state.wallets);
+  // Also include anyone who has placed a bet
+  state.bets.forEach(function(b){ if (players.indexOf(b.bettor)<0) players.push(b.bettor); });
+  if (!players.length) { el.innerHTML = '<div class="empty"><p>No players yet.</p></div>'; return; }
+  el.innerHTML = players.map(function(p) {
+    const bal = getBalance(p);
+    return '<div class="bet-card" style="display:flex;align-items:center;gap:10px;padding:12px">' +
+      '<div style="width:36px;height:36px;border-radius:50%;background:var(--blue-bg);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--blue);flex-shrink:0">' +
+        p.charAt(0).toUpperCase() + '</div>' +
+      '<div style="flex:1"><div style="font-weight:600;font-size:14px">'+p+'</div>' +
+        '<div style="font-size:12px;color:var(--muted)">Balance: <strong style="color:'+(bal>=0?'var(--green)':'var(--red)')+'">'+fmt(bal)+'</strong></div></div>' +
+      '<button onclick="openBookieWalletModal(\''+p+'\')" style="padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12px;cursor:pointer">Adjust</button>' +
+    '</div>';
+  }).join('');
+}
 function renderBookieEventsList() {
   if (!bookieUnlocked) return;
   const el = document.getElementById('bookie-events-list');
-  if (!state.events.length) { el.innerHTML = '<div class="empty"><p>No events yet. Create one above.</p></div>'; return; }
+  if (!state.events.length) { el.innerHTML = '<div class="empty"><p>No events yet.</p></div>'; return; }
   el.innerHTML = state.events.slice().reverse().map(function(ev) {
-    const evBets = state.bets.filter(function(b) { return b.eventId === ev.id; });
-    const totalStake = evBets.reduce(function(s,b) { return s+b.stake; }, 0);
-    const badge = ev.status === 'open' ? 'badge-open' : 'badge-settled';
-    const winnerName = ev.winner ? (ev.outcomes.find(function(o){return o.id===ev.winner;})||{}).name : null;
+    const evBets = state.bets.filter(function(b){ return b.eventId===ev.id; });
+    const totalStake = evBets.reduce(function(s,b){ return s+b.stake; },0);
+    const badge = ev.status==='open'?'badge-open':'badge-settled';
+    const winnerName = ev.winner?(ev.outcomes.find(function(o){return o.id===ev.winner;})||{}).name:null;
+    const sportChip = ev.sport?'<span class="badge badge-sport" style="margin-left:6px">'+(SPORT_EMOJI[ev.sport]||'')+' '+SPORT_LABELS[ev.sport]+'</span>':'';
     return '<div class="bet-card">' +
       '<div class="bet-header"><div>' +
-        '<div class="bet-event">' + ev.title + '</div>' +
-        '<div class="bet-meta">' + ev.cat + (ev.closes?' · '+fmtDate(ev.closes):'') + '</div>' +
-      '</div><span class="badge ' + badge + '">' + ev.status + '</span></div>' +
-      '<div style="display:flex;gap:16px;font-size:13px;margin-bottom:10px">' +
-        '<span style="color:var(--muted)">Bets: <strong style="color:var(--text)">' + evBets.length + '</strong></span>' +
-        '<span style="color:var(--muted)">Pool: <strong style="color:var(--amber)">' + fmt(totalStake) + '</strong></span>' +
-        (winnerName ? '<span style="color:var(--muted)">Winner: <strong style="color:var(--green)">' + winnerName + '</strong></span>' : '') +
+        '<div class="bet-event">'+ev.title+sportChip+'</div>' +
+        '<div class="bet-meta">'+ev.cat+(ev.closes?' · '+fmtDate(ev.closes):'')+'</div>' +
+      '</div><span class="badge '+badge+'">'+ev.status+'</span></div>' +
+      '<div style="display:flex;gap:14px;font-size:13px;margin-bottom:10px">' +
+        '<span style="color:var(--muted)">Bets: <strong style="color:var(--text)">'+evBets.length+'</strong></span>' +
+        '<span style="color:var(--muted)">Pool: <strong style="color:var(--amber)">'+fmt(totalStake)+'</strong></span>' +
+        (winnerName?'<span style="color:var(--muted)">Winner: <strong style="color:var(--green)">'+winnerName+'</strong></span>':'') +
       '</div>' +
-      (ev.status==='open' ?
+      (ev.status==='open'?
         '<div class="bet-actions">' +
-          '<button class="btn-win" onclick="openSettle(\'' + ev.id + '\')">Settle event</button>' +
-          '<button class="btn-void" onclick="voidEvent(\'' + ev.id + '\')">Void all</button>' +
-        '</div>' : '') +
+          '<button class="btn-win" onclick="openSettle(\''+ev.id+'\')">Settle event</button>' +
+          '<button class="btn-void" onclick="voidEvent(\''+ev.id+'\')">Void all</button>' +
+        '</div>':'') +
     '</div>';
   }).join('');
+}
+
+// ── Bookie wallet adjust ──────────────────────────────────────────
+function openBookieWalletModal(player) {
+  bwmPlayer = player;
+  bwmMode = 'credit';
+  document.getElementById('bwm-player').textContent = player;
+  document.getElementById('bwm-balance').textContent = fmt(getBalance(player));
+  document.getElementById('bwm-amount').value = '';
+  document.getElementById('bwm-note').value = '';
+  setBwmType('credit');
+  document.getElementById('bookie-wallet-modal').classList.add('open');
+}
+function closeBookieWalletModal(){ document.getElementById('bookie-wallet-modal').classList.remove('open'); }
+function setBwmType(type) {
+  bwmMode = type;
+  document.querySelectorAll('#bwm-seg .seg-btn').forEach(function(b,i){
+    b.classList.toggle('active', (i===0&&type==='credit')||(i===1&&type==='debit'));
+  });
+  document.getElementById('bwm-title').textContent = type==='credit'?'Add funds to '+bwmPlayer:'Deduct funds from '+bwmPlayer;
+}
+function submitBookieWallet() {
+  const amount = parseFloat(document.getElementById('bwm-amount').value);
+  if (!amount || amount <= 0) { alert('Enter a valid amount.'); return; }
+  const note = document.getElementById('bwm-note').value.trim() || (bwmMode==='credit'?'Added by bookie':'Deducted by bookie');
+  if (bwmMode === 'debit') {
+    const bal = getBalance(bwmPlayer);
+    if (amount > bal) { alert('Cannot deduct more than balance of '+fmt(bal)); return; }
+    adjustBalance(bwmPlayer, -amount, 'bookie-debit', note);
+    toast('Deducted '+fmt(amount)+' from '+bwmPlayer, 'var(--red)');
+  } else {
+    adjustBalance(bwmPlayer, amount, 'bookie-credit', note);
+    toast('Added '+fmt(amount)+' to '+bwmPlayer);
+  }
+  save();
+  closeBookieWalletModal();
+  renderBookieWallets();
+  renderBookieStats();
 }
 
 // ── Settle ────────────────────────────────────────────────────────
 function openSettle(eventId) {
   activeSettleId = eventId;
-  const ev = state.events.find(function(e) { return e.id === eventId; });
+  const ev = state.events.find(function(e){ return e.id===eventId; });
   document.getElementById('settle-event-name').textContent = ev.title;
-  document.getElementById('settle-outcome').innerHTML = ev.outcomes.map(function(o) {
-    return '<option value="' + o.id + '">' + o.name + ' (' + o.odds + 'x)</option>';
-  }).join('');
+  document.getElementById('settle-outcome').innerHTML = ev.outcomes.map(function(o){ return '<option value="'+o.id+'">'+o.name+' ('+o.odds+'x)</option>'; }).join('');
   document.getElementById('settle-modal').classList.add('open');
 }
-function closeSettleModal() { document.getElementById('settle-modal').classList.remove('open'); }
+function closeSettleModal(){ document.getElementById('settle-modal').classList.remove('open'); }
 function settleEvent() {
-  const ev = state.events.find(function(e) { return e.id === activeSettleId; });
+  const ev = state.events.find(function(e){ return e.id===activeSettleId; });
   const winnerId = document.getElementById('settle-outcome').value;
-  ev.status = 'settled';
-  ev.winner = winnerId;
+  ev.status='settled'; ev.winner=winnerId;
   state.bets.forEach(function(b) {
-    if (b.eventId === ev.id && b.status === 'open') {
-      b.status = b.outcomeId === winnerId ? 'won' : 'lost';
+    if (b.eventId===ev.id && b.status==='open') {
+      if (b.outcomeId===winnerId) {
+        b.status='won';
+        const payout = parseFloat((b.stake*b.odds).toFixed(2));
+        adjustBalance(b.bettor, payout, 'win', 'Won: '+ev.title+' — '+b.outcomeName, b.id);
+      } else { b.status='lost'; }
     }
   });
   save();
   closeSettleModal();
-  toast('Event settled!');
+  toast('Event settled — winners paid out!');
   renderEvents();
   renderBookieStats();
   renderBookieEventsList();
+  renderBookieWallets();
 }
 function voidEvent(eventId) {
-  if (!confirm('Void all bets on this event?')) return;
-  const ev = state.events.find(function(e) { return e.id === eventId; });
-  ev.status = 'voided';
-  state.bets.forEach(function(b) { if (b.eventId===eventId && b.status==='open') b.status='void'; });
+  if (!confirm('Void all bets and refund stakes?')) return;
+  const ev = state.events.find(function(e){ return e.id===eventId; });
+  ev.status='voided';
+  state.bets.forEach(function(b) {
+    if (b.eventId===eventId && b.status==='open') {
+      b.status='void';
+      adjustBalance(b.bettor, b.stake, 'deposit', 'Refund: '+ev.title+' (voided)', b.id);
+    }
+  });
   save();
-  toast('Event voided', 'var(--amber)');
+  toast('Event voided — stakes refunded', 'var(--amber)');
   renderEvents();
   renderBookieStats();
   renderBookieEventsList();
+  renderBookieWallets();
 }
 
+// ── Helpers ───────────────────────────────────────────────────────
 function fmtDate(s) {
   if (!s) return '';
-  return new Date(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+  try { return new Date(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}); }
+  catch(e) { return s; }
+}
+function fmtDateTime(ts) {
+  return new Date(ts).toLocaleDateString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
 }
 
 document.querySelectorAll('.modal-wrap').forEach(function(m) {
-  m.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
+  m.addEventListener('click', function(e){ if(e.target===this) this.classList.remove('open'); });
 });
 </script>
 </body>
